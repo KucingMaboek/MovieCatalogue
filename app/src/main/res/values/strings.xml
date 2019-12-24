@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Movie Catalogue</string>
+    <string name="title_movies">Judul Film</string>
+    <string name="synopsis_movie">Lorem ipsum dolor sit amet</string>
+    
+    <string-array name="data_title">
+        <item>Judul 1</item>
+        <item>Judul 2</item>
+        <item>Judul 3</item>
+        <item>Judul 4</item>
+        <item>Judul 5</item>
+        <item>Judul 6</item>
+        <item>Judul 7</item>
+        <item>Judul 8</item>
+        <item>Judul 9</item>
+        <item>Judul 10</item>
+    </string-array>
+
+    <string-array name="data_synopsis">
+        <item>Synopsis 1</item>
+        <item>Synopsis 2</item>
+        <item>Synopsis 3</item>
+        <item>Synopsis 4</item>
+        <item>Synopsis 5</item>
+        <item>Synopsis 6</item>
+        <item>Synopsis 7</item>
+        <item>Synopsis 8</item>
+        <item>Synopsis 9</item>
+        <item>Synopsis 10</item>
+    </string-array>
+
+    <array name="data_photo">
+        <item>@drawable/ahmad_dahlan</item>
+        <item>@drawable/ahmad_yani</item>
+        <item>@drawable/bung_tomo</item>
+        <item>@drawable/gatot_subroto</item>
+        <item>@drawable/ki_hadjar_dewantara</item>
+        <item>@drawable/mohammad_hatta</item>
+        <item>@drawable/sudirman</item>
+        <item>@drawable/sukarno</item>
+        <item>@drawable/supomo</item>
+        <item>@drawable/tan_malaka</item>
+    </array>
+</resources>
