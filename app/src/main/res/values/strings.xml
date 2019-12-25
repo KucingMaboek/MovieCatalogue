@@ -2,7 +2,10 @@
     <string name="app_name">Movie Catalogue</string>
     <string name="title_movies">Judul Film</string>
     <string name="synopsis_movie">Lorem ipsum dolor sit amet</string>
-    
+    <string name="object_received">Object diterima</string>
+    <string name="tv_object_judul">Judul</string>
+    <string name="object_synopsis">lorem ipsum dolor sit amet</string>
+
     <string-array name="data_title">
         <item>Judul 1</item>
         <item>Judul 2</item>

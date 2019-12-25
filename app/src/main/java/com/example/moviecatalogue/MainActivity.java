@@ -2,6 +2,7 @@ package com.example.moviecatalogue;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.View;
@@ -27,14 +28,21 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.lv_list);
         movieAdapter = new MovieAdapter(this);
         listView.setAdapter(movieAdapter);
-
         prepare();
         addItem();
 
+        Movie movie = new Movie();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this,movies.get(position).getTitle(), Toast.LENGTH_SHORT).show();
+                Movie movie = new Movie();
+                movie.setPhoto(dataPhoto.getResourceId(position, -1));
+                movie.setTitle(dataTitle[position]);
+                movie.setSysnopsis(dataSynopsis[position]);
+//                Toast.makeText(MainActivity.this,Integer.toString(movie.getPhoto()), Toast.LENGTH_SHORT).show();
+                Intent moveWithObjectActivity = new Intent(MainActivity.this,MoveWithObjectActivity.class);
+                moveWithObjectActivity.putExtra(MoveWithObjectActivity.EXTRA_MOVIE, movie);
+                startActivity(moveWithObjectActivity);
             }
         });
     }
@@ -58,4 +66,5 @@ public class MainActivity extends AppCompatActivity {
 
         movieAdapter.setMovies(movies);
     }
+
 }
