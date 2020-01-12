@@ -1,68 +1,47 @@
 package com.example.moviecatalogue;
 
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.provider.Settings;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
-import java.util.ArrayList;
+import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
-
-    private MovieAdapter movieAdapter;
-    private String[] dataTitle;
-    private String[] dataSynopsis;
-    private TypedArray dataPhoto;
-    private ArrayList<Movie> movies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setUpViewPager();
 
-        ListView listView = findViewById(R.id.lv_list);
-        movieAdapter = new MovieAdapter(this);
-        listView.setAdapter(movieAdapter);
-        prepare();
-        addItem();
-
-        Movie movie = new Movie();
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Movie movie = new Movie();
-                movie.setPhoto(dataPhoto.getResourceId(position, -1));
-                movie.setTitle(dataTitle[position]);
-                movie.setSysnopsis(dataSynopsis[position]);
-                Intent moveWithObjectActivity = new Intent(MainActivity.this, MoveWithObjectActivity.class);
-                moveWithObjectActivity.putExtra(MoveWithObjectActivity.EXTRA_MOVIE, movie);
-                startActivity(moveWithObjectActivity);
-            }
-        });
     }
 
-    private void prepare() {
-        dataTitle = getResources().getStringArray(R.array.data_title);
-        dataSynopsis = getResources().getStringArray(R.array.data_synopsis);
-        dataPhoto = getResources().obtainTypedArray(R.array.data_photo);
+    public void setUpViewPager() {
+        SectionPagerAdapter sectionPagerAdapter = new SectionPagerAdapter(this, getSupportFragmentManager());
+        ViewPager viewPager = findViewById(R.id.view_pager);
+        viewPager.setAdapter(sectionPagerAdapter);
+        TabLayout tabs = findViewById(R.id.tabs);
+        tabs.setupWithViewPager(viewPager);
+        getSupportActionBar().setElevation(0);
     }
 
-    private void addItem() {
-        movies = new ArrayList<>();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
-        for (int i = 0; i < dataTitle.length; i++) {
-            Movie movie = new Movie();
-            movie.setPhoto(dataPhoto.getResourceId(i, -1));
-            movie.setTitle(dataTitle[i]);
-            movie.setSysnopsis(dataSynopsis[i]);
-            movies.add(movie);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_change_settings) {
+            Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+            startActivity(mIntent);
         }
-
-        movieAdapter.setMovies(movies);
+        return super.onOptionsItemSelected(item);
     }
-
 }

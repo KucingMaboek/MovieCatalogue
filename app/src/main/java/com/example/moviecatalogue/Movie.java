@@ -4,25 +4,22 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Movie implements Parcelable {
-    private int photo;
+    private String photo;
     private String title;
     private String sysnopsis;
 
-    protected Movie(Parcel in) {
-        photo = in.readInt();
+    private Movie(Parcel in) {
+        photo = in.readString();
         title = in.readString();
         sysnopsis = in.readString();
     }
 
-    public Movie() {
-        this.photo = photo;
-        this.title = title;
-        this.sysnopsis = sysnopsis;
+    Movie() {
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(photo);
+        dest.writeString(photo);
         dest.writeString(title);
         dest.writeString(sysnopsis);
     }
@@ -44,27 +41,27 @@ public class Movie implements Parcelable {
         }
     };
 
-    public int getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(int photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 
-    public String getTitle() {
+    String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    void setTitle(String title) {
         this.title = title;
     }
 
-    public String getSysnopsis() {
+    String getSysnopsis() {
         return sysnopsis;
     }
 
-    public void setSysnopsis(String sysnopsis) {
+    void setSysnopsis(String sysnopsis) {
         this.sysnopsis = sysnopsis;
     }
 }
