@@ -1,14 +1,13 @@
 package com.example.moviecatalogue;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
@@ -39,24 +38,23 @@ public class MainActivity extends AppCompatActivity {
                 movie.setPhoto(dataPhoto.getResourceId(position, -1));
                 movie.setTitle(dataTitle[position]);
                 movie.setSysnopsis(dataSynopsis[position]);
-//                Toast.makeText(MainActivity.this,Integer.toString(movie.getPhoto()), Toast.LENGTH_SHORT).show();
-                Intent moveWithObjectActivity = new Intent(MainActivity.this,MoveWithObjectActivity.class);
+                Intent moveWithObjectActivity = new Intent(MainActivity.this, MoveWithObjectActivity.class);
                 moveWithObjectActivity.putExtra(MoveWithObjectActivity.EXTRA_MOVIE, movie);
                 startActivity(moveWithObjectActivity);
             }
         });
     }
 
-    private void prepare(){
+    private void prepare() {
         dataTitle = getResources().getStringArray(R.array.data_title);
         dataSynopsis = getResources().getStringArray(R.array.data_synopsis);
         dataPhoto = getResources().obtainTypedArray(R.array.data_photo);
     }
 
-    private void addItem(){
+    private void addItem() {
         movies = new ArrayList<>();
 
-        for (int i = 0; i < dataTitle.length; i++){
+        for (int i = 0; i < dataTitle.length; i++) {
             Movie movie = new Movie();
             movie.setPhoto(dataPhoto.getResourceId(i, -1));
             movie.setTitle(dataTitle[i]);

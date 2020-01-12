@@ -5,6 +5,8 @@
     <string name="object_received">Object diterima</string>
     <string name="tv_object_judul">Judul</string>
     <string name="object_synopsis">lorem ipsum dolor sit amet</string>
+    <string name="object_photo">object_photo</string>
+    <string name="photo">photo</string>
 
     <string-array name="data_title">
         <item>Star Wars: The Rise of Skywalker</item>

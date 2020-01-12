@@ -1,7 +1,6 @@
 package com.example.moviecatalogue;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +40,7 @@ public class MovieAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View itemView = convertView;
-        if (itemView == null){
+        if (itemView == null) {
             itemView = LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false);
         }
 
@@ -55,18 +54,18 @@ public class MovieAdapter extends BaseAdapter {
 }
 
 
-class ViewHolder{
+class ViewHolder {
     private TextView txtTitle;
     private TextView txtSynopsis;
     private ImageView imgPhoto;
 
-    ViewHolder(View view){
+    ViewHolder(View view) {
         txtTitle = view.findViewById(R.id.txt_title);
         txtSynopsis = view.findViewById(R.id.txt_synopsis);
         imgPhoto = view.findViewById(R.id.img_photo);
     }
 
-    void bind(Movie movie){
+    void bind(Movie movie) {
         txtTitle.setText(movie.getTitle());
         txtSynopsis.setText(movie.getSysnopsis());
         imgPhoto.setImageResource(movie.getPhoto());
