@@ -11,6 +11,18 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp">
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@android:style/Widget.Holo.Light.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/tv_object_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/tv_object_photo"
             android:layout_width="120dp"
@@ -71,4 +83,5 @@
             app:layout_constraintTop_toBottomOf="@+id/sysnopsis" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </ScrollView>

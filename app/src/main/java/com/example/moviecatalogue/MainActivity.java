@@ -27,7 +27,9 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-        getSupportActionBar().setElevation(0);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setElevation(0);
+        }
     }
 
     @Override

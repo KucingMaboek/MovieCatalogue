@@ -13,55 +13,61 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.ListViewHolder> {
-    private ArrayList<Movie> listMovie;
+public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> {
+    private ArrayList<Item> listItem;
     private OnItemClickCallBack onItemClickCallBack;
+
+    void setData(ArrayList<Item> items) {
+        listItem.clear();
+        listItem.addAll(items);
+        notifyDataSetChanged();
+    }
 
     void setOnItemClickCallBack(OnItemClickCallBack onItemClickCallBack) {
         this.onItemClickCallBack = onItemClickCallBack;
     }
 
-    ListMovieAdapter(ArrayList<Movie> list) {
-        this.listMovie = list;
+    ItemAdapter(ArrayList<Item> list) {
+        this.listItem = list;
     }
 
 
     @NonNull
     @Override
-    public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_movie, parent, false);
-        return new ListViewHolder(view);
+        return new ItemHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ListViewHolder holder, int position) {
-        Movie movie = listMovie.get(position);
+    public void onBindViewHolder(@NonNull final ItemHolder holder, int position) {
+        Item item = listItem.get(position);
 
         Glide.with(holder.itemView.getContext())
-                .load(movie.getPhoto())
+                .load(item.getPhoto())
                 .into(holder.imgPhoto);
 
-        holder.tvTitle.setText(movie.getTitle());
-        holder.tvSynopsis.setText(movie.getSysnopsis());
+        holder.tvTitle.setText(item.getTitle());
+        holder.tvSynopsis.setText(item.getSysnopsis());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onItemClickCallBack.onItemClicked(listMovie.get(holder.getAdapterPosition()));
+                onItemClickCallBack.onItemClicked(listItem.get(holder.getAdapterPosition()));
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return listMovie.size();
+        return listItem.size();
     }
 
-    class ListViewHolder extends RecyclerView.ViewHolder {
+    class ItemHolder extends RecyclerView.ViewHolder {
         ImageView imgPhoto;
         TextView tvTitle, tvSynopsis;
 
-        ListViewHolder(@NonNull View itemView) {
+        ItemHolder(@NonNull View itemView) {
             super(itemView);
             imgPhoto = itemView.findViewById(R.id.img_photo);
             tvTitle = itemView.findViewById(R.id.txt_title);
@@ -70,6 +76,6 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.List
     }
 
     public interface OnItemClickCallBack {
-        void onItemClicked(Movie data);
+        void onItemClicked(Item data);
     }
 }

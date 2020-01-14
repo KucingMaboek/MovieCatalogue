@@ -3,18 +3,18 @@ package com.example.moviecatalogue;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Movie implements Parcelable {
+public class Item implements Parcelable {
     private String photo;
     private String title;
     private String sysnopsis;
 
-    private Movie(Parcel in) {
+    private Item(Parcel in) {
         photo = in.readString();
         title = in.readString();
         sysnopsis = in.readString();
     }
 
-    Movie() {
+    Item() {
     }
 
     @Override
@@ -29,15 +29,15 @@ public class Movie implements Parcelable {
         return 0;
     }
 
-    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+    public static final Creator<Item> CREATOR = new Creator<Item>() {
         @Override
-        public Movie createFromParcel(Parcel in) {
-            return new Movie(in);
+        public Item createFromParcel(Parcel in) {
+            return new Item(in);
         }
 
         @Override
-        public Movie[] newArray(int size) {
-            return new Movie[size];
+        public Item[] newArray(int size) {
+            return new Item[size];
         }
     };
 
