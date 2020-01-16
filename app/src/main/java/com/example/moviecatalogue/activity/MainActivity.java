@@ -1,4 +1,4 @@
-package com.example.moviecatalogue;
+package com.example.moviecatalogue.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.moviecatalogue.R;
+import com.example.moviecatalogue.adapter.SectionPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {

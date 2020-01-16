@@ -1,4 +1,4 @@
-package com.example.moviecatalogue;
+package com.example.moviecatalogue.fragment;
 
 
 import android.content.Intent;
@@ -14,6 +14,12 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.moviecatalogue.activity.DetailActivity;
+import com.example.moviecatalogue.R;
+import com.example.moviecatalogue.adapter.ItemAdapter;
+import com.example.moviecatalogue.data.Item;
+import com.example.moviecatalogue.api.MainViewModel;
 
 import java.util.ArrayList;
 

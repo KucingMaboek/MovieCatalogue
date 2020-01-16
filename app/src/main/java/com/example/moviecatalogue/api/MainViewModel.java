@@ -1,4 +1,4 @@
-package com.example.moviecatalogue;
+package com.example.moviecatalogue.api;
 
 import android.util.Log;
 
@@ -6,6 +6,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.moviecatalogue.BuildConfig;
+import com.example.moviecatalogue.data.Item;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -22,7 +24,7 @@ public class MainViewModel extends ViewModel {
     private String currentLanguange = Locale.getDefault().getDisplayLanguage();
     private MutableLiveData<ArrayList<Item>> listItem = new MutableLiveData<>();
 
-    void setMovie() {
+    public void setMovie() {
         AsyncHttpClient client = new AsyncHttpClient();
         final ArrayList<Item> listMovie = new ArrayList<>();
         String url = "https://api.themoviedb.org/3/discover/movie?api_key=" + API_KEY +"&language=en-US";
@@ -66,7 +68,7 @@ public class MainViewModel extends ViewModel {
         });
     }
 
-    void setTvShow() {
+    public void setTvShow() {
         AsyncHttpClient client = new AsyncHttpClient();
         final ArrayList<Item> listTvShow = new ArrayList<>();
         String url = "https://api.themoviedb.org/3/discover/tv?api_key=" + API_KEY +"&language=en-US";
@@ -110,7 +112,7 @@ public class MainViewModel extends ViewModel {
         });
     }
 
-    LiveData<ArrayList<Item>> getItem() {
+    public LiveData<ArrayList<Item>> getItem() {
         return listItem;
     }
 }

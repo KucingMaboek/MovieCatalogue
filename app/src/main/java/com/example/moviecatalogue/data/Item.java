@@ -1,4 +1,4 @@
-package com.example.moviecatalogue;
+package com.example.moviecatalogue.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -14,7 +14,7 @@ public class Item implements Parcelable {
         sysnopsis = in.readString();
     }
 
-    Item() {
+    public Item() {
     }
 
     @Override
@@ -49,19 +49,19 @@ public class Item implements Parcelable {
         this.photo = photo;
     }
 
-    String getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    void setTitle(String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    String getSysnopsis() {
+    public String getSysnopsis() {
         return sysnopsis;
     }
 
-    void setSysnopsis(String sysnopsis) {
+    public void setSysnopsis(String sysnopsis) {
         this.sysnopsis = sysnopsis;
     }
 }
