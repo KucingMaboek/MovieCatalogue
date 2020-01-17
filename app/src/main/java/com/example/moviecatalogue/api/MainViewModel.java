@@ -49,6 +49,7 @@ public class MainViewModel extends ViewModel {
                         JSONObject movie = list.getJSONObject(i);
                         Item item = new Item();
 
+                        item.setId(movie.getString("id"));
                         item.setPhoto("http://image.tmdb.org/t/p/w185" + movie.getString("poster_path"));
                         item.setTitle(movie.getString("title"));
                         item.setSysnopsis(movie.getString("overview"));

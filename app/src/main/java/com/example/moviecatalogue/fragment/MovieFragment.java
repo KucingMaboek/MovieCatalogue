@@ -82,6 +82,7 @@ public class MovieFragment extends Fragment {
 
     private void showSelectedMovie(Item movie) {
         Toast.makeText(getActivity(), movie.getTitle(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), movie.getId(), Toast.LENGTH_SHORT).show();
         Intent moveWithObjectActivity = new Intent(getContext(), DetailActivity.class);
         moveWithObjectActivity.putExtra(DetailActivity.EXTRA_MOVIE, movie);
         startActivity(moveWithObjectActivity);

@@ -4,11 +4,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Item implements Parcelable {
+    private String id;
     private String photo;
     private String title;
     private String sysnopsis;
 
     private Item(Parcel in) {
+        id = in.readString();
         photo = in.readString();
         title = in.readString();
         sysnopsis = in.readString();
@@ -19,6 +21,7 @@ public class Item implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
         dest.writeString(photo);
         dest.writeString(title);
         dest.writeString(sysnopsis);
@@ -40,6 +43,14 @@ public class Item implements Parcelable {
             return new Item[size];
         }
     };
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getPhoto() {
         return photo;
