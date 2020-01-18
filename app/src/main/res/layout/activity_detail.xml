@@ -82,6 +82,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sysnopsis" />
 
+        <Button
+            android:id="@+id/btn_favorite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorPrimary"
+            android:text="Tambah ke favorit"
+            app:layout_constraintTop_toBottomOf="@+id/tv_object_synopsis" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

@@ -1,12 +1,29 @@
-package com.example.moviecatalogue.data;
+package com.example.moviecatalogue.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Item implements Parcelable {
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import java.io.Serializable;
+
+@Entity(tableName = "tItem")
+public class Item implements Parcelable, Serializable {
+
+    @NonNull
+    @PrimaryKey(autoGenerate = false)
     private String id;
+
+    @ColumnInfo(name = "photo")
     private String photo;
+
+    @ColumnInfo(name = "title")
     private String title;
+
+    @ColumnInfo(name = "synopsis")
     private String sysnopsis;
 
     private Item(Parcel in) {

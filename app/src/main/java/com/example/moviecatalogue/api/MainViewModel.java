@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.moviecatalogue.BuildConfig;
-import com.example.moviecatalogue.data.Item;
+import com.example.moviecatalogue.model.Item;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 

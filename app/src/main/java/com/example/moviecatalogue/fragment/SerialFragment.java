@@ -3,6 +3,7 @@ package com.example.moviecatalogue.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.moviecatalogue.activity.DetailActivity;
 import com.example.moviecatalogue.R;
 import com.example.moviecatalogue.adapter.ItemAdapter;
-import com.example.moviecatalogue.data.Item;
+import com.example.moviecatalogue.model.Item;
 import com.example.moviecatalogue.api.MainViewModel;
 
 import java.util.ArrayList;
@@ -81,7 +82,7 @@ public class SerialFragment extends Fragment {
     private void showSelectedMovie(Item movie) {
         Toast.makeText(getActivity(), movie.getTitle(), Toast.LENGTH_SHORT).show();
         Intent moveWithObjectActivity = new Intent(getContext(), DetailActivity.class);
-        moveWithObjectActivity.putExtra(DetailActivity.EXTRA_MOVIE, movie);
+        moveWithObjectActivity.putExtra(DetailActivity.EXTRA_MOVIE, (Parcelable) movie);
         startActivity(moveWithObjectActivity);
     }
 
