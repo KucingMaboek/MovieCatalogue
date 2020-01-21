@@ -1,4 +1,4 @@
-package com.example.moviecatalogue.fragment;
+package com.example.moviecatalogue.view.fragment;
 
 
 import android.content.Intent;
@@ -16,7 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.moviecatalogue.activity.DetailActivity;
+import com.example.moviecatalogue.view.activity.DetailActivity;
 import com.example.moviecatalogue.R;
 import com.example.moviecatalogue.adapter.ItemAdapter;
 import com.example.moviecatalogue.model.Item;
@@ -28,14 +28,14 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MovieFragment extends Fragment {
+public class DcvMovieFragment extends Fragment {
     private RecyclerView rvMovies;
     private ArrayList<Item> list = new ArrayList<>();
     private ProgressBar progressBar;
     private static ItemAdapter listMovieAdapter;
 
 
-    public MovieFragment() {
+    public DcvMovieFragment() {
         // Required empty public constructor
     }
 
@@ -43,9 +43,8 @@ public class MovieFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_movie, container, false);
-        rvMovies = view.findViewById(R.id.rv_movies);
-        rvMovies = view.findViewById(R.id.rv_movies);
+        View view = inflater.inflate(R.layout.fragment_discover_list, container, false);
+        rvMovies = view.findViewById(R.id.discover_recyclerView);
         progressBar = view.findViewById(R.id.progressBar);
         showRecyclerList();
         return view;
@@ -82,8 +81,6 @@ public class MovieFragment extends Fragment {
     }
 
     private void showSelectedMovie(Item movie) {
-        Toast.makeText(getActivity(), movie.getTitle(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(getActivity(), movie.getId(), Toast.LENGTH_SHORT).show();
         Intent moveWithObjectActivity = new Intent(getContext(), DetailActivity.class);
         moveWithObjectActivity.putExtra(DetailActivity.EXTRA_MOVIE, (Parcelable) movie);
         startActivity(moveWithObjectActivity);

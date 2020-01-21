@@ -9,16 +9,20 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.moviecatalogue.fragment.MovieFragment;
 import com.example.moviecatalogue.R;
-import com.example.moviecatalogue.fragment.SerialFragment;
+import com.example.moviecatalogue.view.fragment.DcvMovieFragment;
+import com.example.moviecatalogue.view.fragment.DcvSerialFragment;
+import com.example.moviecatalogue.view.fragment.FavMovieFragment;
+import com.example.moviecatalogue.view.fragment.FavSerialFragment;
 
 public class SectionPagerAdapter extends FragmentPagerAdapter {
     private final Context mContext;
+    private final String menu;
 
-    public SectionPagerAdapter(Context context, FragmentManager fm) {
+    public SectionPagerAdapter(Context context, FragmentManager fm, String menu) {
         super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         mContext = context;
+        this.menu = menu;
     }
 
     @StringRes
@@ -31,13 +35,25 @@ public class SectionPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         Fragment fragment = null;
-        switch (position) {
-            case 0:
-                fragment = new MovieFragment();
-                break;
-            case 1:
-                fragment = new SerialFragment();
-                break;
+        if (menu.equalsIgnoreCase("discover")) {
+            switch (position) {
+                case 0:
+                    fragment = new DcvMovieFragment();
+                    break;
+                case 1:
+                    fragment = new DcvSerialFragment();
+                    break;
+            }
+        }
+        if (menu.equalsIgnoreCase("favorite")) {
+            switch (position) {
+                case 0:
+                    fragment = new FavMovieFragment();
+                    break;
+                case 1:
+                    fragment = new FavSerialFragment();
+                    break;
+            }
         }
         return fragment;
     }

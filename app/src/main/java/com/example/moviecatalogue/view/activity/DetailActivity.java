@@ -1,28 +1,28 @@
-package com.example.moviecatalogue.activity;
+package com.example.moviecatalogue.view.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.telecom.Call;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import com.bumptech.glide.Glide;
-import com.example.moviecatalogue.AppDatabase;
 import com.example.moviecatalogue.R;
+import com.example.moviecatalogue.database.AppDatabase;
 import com.example.moviecatalogue.model.Item;
 
 public class DetailActivity extends AppCompatActivity {
     public static final String EXTRA_MOVIE = "extra_movie";
     private AppDatabase db;
     ProgressBar progressBar;
+    private boolean isFavorite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +30,28 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "itemdb").build();
+                AppDatabase.class, "itemdb").allowMainThreadQueries().build();
+
 
         final Item item = getIntent().getParcelableExtra(EXTRA_MOVIE);
+        try {
+            String titles = db.itemDAO().favoriteChecker(item.getTitle()).get(0).getTitle();
+            isFavorite = true;
+        } catch (Exception ignored) {
+            isFavorite = false;
+        }
+
         TextView tvObjectTitle = findViewById(R.id.tv_object_title);
         TextView tvObjectSynopsis = findViewById(R.id.tv_object_synopsis);
         ImageView tvObjectPhoto = findViewById(R.id.tv_object_photo);
         Button btnFavorite = findViewById(R.id.btn_favorite);
         progressBar = findViewById(R.id.progressBar);
+
+        if (isFavorite) {
+            btnFavorite.setText(R.string.delete_from_favorite);
+        } else {
+            btnFavorite.setText(R.string.add_to_favorite);
+        }
 
         showLoading(true);
         if (item != null) {
@@ -52,7 +66,13 @@ public class DetailActivity extends AppCompatActivity {
         btnFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                insertData(item);
+                if (isFavorite) {
+                    deleteData(item);
+                    refreshActivity();
+                } else {
+                    insertData(item);
+                    refreshActivity();
+                }
             }
         });
     }
@@ -66,17 +86,22 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     @SuppressLint("StaticFieldLeak")
-    private void insertData(final Item item){
-        new AsyncTask<Void, Void, Long>(){
+    private void insertData(final Item item) {
+        new AsyncTask<Void, Void, Long>() {
             @Override
             protected Long doInBackground(Void... voids) {
-                long status = db.itemDAO().insertItem(item);
-                return status;
-            }
-            @Override
-            protected void onPostExecute(Long status){
-                Toast.makeText(DetailActivity.this, "status row " + status, Toast.LENGTH_SHORT).show();
+                return db.itemDAO().insertItem(item);
             }
         }.execute();
+    }
+
+    private void deleteData(Item item) {
+        db.itemDAO().deleteItem(item);
+    }
+
+    private void refreshActivity() {
+        Intent refresh = getIntent();
+        startActivity(refresh);
+        finish();
     }
 }

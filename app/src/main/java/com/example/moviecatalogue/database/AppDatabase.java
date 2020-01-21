@@ -1,4 +1,4 @@
-package com.example.moviecatalogue;
+package com.example.moviecatalogue.database;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;

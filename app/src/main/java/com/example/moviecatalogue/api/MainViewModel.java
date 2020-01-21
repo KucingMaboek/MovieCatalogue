@@ -27,13 +27,12 @@ public class MainViewModel extends ViewModel {
     public void setMovie() {
         AsyncHttpClient client = new AsyncHttpClient();
         final ArrayList<Item> listMovie = new ArrayList<>();
-        String url = "https://api.themoviedb.org/3/discover/movie?api_key=" + API_KEY +"&language=en-US";
+        String url = "https://api.themoviedb.org/3/discover/movie?api_key=" + API_KEY + "&language=en-US";
 
-        if (currentLanguange.equalsIgnoreCase("INDONESIA")){
-            url = "https://api.themoviedb.org/3/discover/movie?api_key=" + API_KEY +"&language=id-ID";
-        }
-        else if (currentLanguange.equalsIgnoreCase("ENGLISH")){
-            url = "https://api.themoviedb.org/3/discover/movie?api_key=" + API_KEY +"&language=en-US";
+        if (currentLanguange.equalsIgnoreCase("INDONESIA")) {
+            url = "https://api.themoviedb.org/3/discover/movie?api_key=" + API_KEY + "&language=id-ID";
+        } else if (currentLanguange.equalsIgnoreCase("ENGLISH")) {
+            url = "https://api.themoviedb.org/3/discover/movie?api_key=" + API_KEY + "&language=en-US";
 
         }
 
@@ -53,6 +52,7 @@ public class MainViewModel extends ViewModel {
                         item.setPhoto("http://image.tmdb.org/t/p/w185" + movie.getString("poster_path"));
                         item.setTitle(movie.getString("title"));
                         item.setSysnopsis(movie.getString("overview"));
+                        item.setCategory("movie");
 
                         listMovie.add(item);
                     }
@@ -72,13 +72,12 @@ public class MainViewModel extends ViewModel {
     public void setTvShow() {
         AsyncHttpClient client = new AsyncHttpClient();
         final ArrayList<Item> listTvShow = new ArrayList<>();
-        String url = "https://api.themoviedb.org/3/discover/tv?api_key=" + API_KEY +"&language=en-US";
+        String url = "https://api.themoviedb.org/3/discover/tv?api_key=" + API_KEY + "&language=en-US";
 
-        if (currentLanguange.equalsIgnoreCase("INDONESIA")){
-            url = "https://api.themoviedb.org/3/discover/tv?api_key=" + API_KEY +"&language=id-ID";
-        }
-        else if (currentLanguange.equalsIgnoreCase("ENGLISH")){
-            url = "https://api.themoviedb.org/3/discover/tv?api_key=" + API_KEY +"&language=en-US";
+        if (currentLanguange.equalsIgnoreCase("INDONESIA")) {
+            url = "https://api.themoviedb.org/3/discover/tv?api_key=" + API_KEY + "&language=id-ID";
+        } else if (currentLanguange.equalsIgnoreCase("ENGLISH")) {
+            url = "https://api.themoviedb.org/3/discover/tv?api_key=" + API_KEY + "&language=en-US";
 
         }
 
@@ -91,13 +90,14 @@ public class MainViewModel extends ViewModel {
                     JSONArray list = responseObject.getJSONArray("results");
 
                     for (int i = 0; i < list.length(); i++) {
-                        JSONObject movie = list.getJSONObject(i);
+                        JSONObject serial = list.getJSONObject(i);
                         Item item = new Item();
 
-                        item.setPhoto("http://image.tmdb.org/t/p/w185" + movie.getString("poster_path"));
-                        item.setTitle(movie.getString("name"));
-                        item.setSysnopsis(movie.getString("overview"));
-
+                        item.setId(serial.getString("id"));
+                        item.setPhoto("http://image.tmdb.org/t/p/w185" + serial.getString("poster_path"));
+                        item.setTitle(serial.getString("name"));
+                        item.setSysnopsis(serial.getString("overview"));
+                        item.setCategory("tvshow");
                         listTvShow.add(item);
                     }
                     listItem.postValue(listTvShow);

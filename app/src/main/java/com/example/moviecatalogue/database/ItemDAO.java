@@ -1,4 +1,4 @@
-package com.example.moviecatalogue;
+package com.example.moviecatalogue.database;
 
 
 import androidx.room.Dao;
@@ -10,6 +10,8 @@ import androidx.room.Update;
 
 import com.example.moviecatalogue.model.Item;
 
+import java.util.List;
+
 @Dao
 public interface ItemDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -19,11 +21,14 @@ public interface ItemDAO {
     int updateItem(Item item);
 
     @Delete
-    int deleteItem(Item item);
+    void deleteItem(Item item);
 
-    @Query("SELECT * FROM tItem")
-    Item[] selectAllItem();
+    @Query("SELECT * FROM tItem WHERE category = 'movie'")
+    Item[] selectAllMovie();
 
-    @Query("SELECT * FROM tItem WHERE id = :id LIMIT 1")
-    Item selectItemDetail(int id);
+    @Query("SELECT * FROM tItem WHERE category = 'tvshow'")
+    Item[] selectAllTvShow();
+
+    @Query("SELECT * FROM tItem WHERE title = :nama")
+    List<Item> favoriteChecker(String nama);
 }

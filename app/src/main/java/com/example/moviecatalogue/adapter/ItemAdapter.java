@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.moviecatalogue.model.Item;
 import com.example.moviecatalogue.R;
+import com.example.moviecatalogue.model.Item;
 
 import java.util.ArrayList;
 

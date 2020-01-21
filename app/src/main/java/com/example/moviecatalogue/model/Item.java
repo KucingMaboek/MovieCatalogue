@@ -26,11 +26,15 @@ public class Item implements Parcelable, Serializable {
     @ColumnInfo(name = "synopsis")
     private String sysnopsis;
 
+    @ColumnInfo(name = "category")
+    private String category;
+
     private Item(Parcel in) {
         id = in.readString();
         photo = in.readString();
         title = in.readString();
         sysnopsis = in.readString();
+        category = in.readString();
     }
 
     public Item() {
@@ -42,6 +46,7 @@ public class Item implements Parcelable, Serializable {
         dest.writeString(photo);
         dest.writeString(title);
         dest.writeString(sysnopsis);
+        dest.writeString(category);
     }
 
     @Override
@@ -91,5 +96,13 @@ public class Item implements Parcelable, Serializable {
 
     public void setSysnopsis(String sysnopsis) {
         this.sysnopsis = sysnopsis;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
