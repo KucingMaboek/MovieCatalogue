@@ -10,9 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.moviecatalogue.R;
 import com.example.moviecatalogue.view.fragment.DisContainerFragment;
 import com.example.moviecatalogue.view.fragment.FavContainerFragment;
-import com.example.moviecatalogue.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         navView.setOnNavigationItemSelectedListener(this);
     }
 
-    private boolean loadFragment(Fragment fragment){
+    private boolean loadFragment(Fragment fragment) {
         if (fragment != null) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.nav_host_fragment, fragment)
