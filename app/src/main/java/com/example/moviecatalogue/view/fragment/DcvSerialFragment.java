@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -32,6 +34,7 @@ public class DcvSerialFragment extends Fragment {
     private RecyclerView rvMovies;
     private ArrayList<Item> list = new ArrayList<>();
     private ProgressBar progressBar;
+    private SearchView searchView;
 
     public DcvSerialFragment() {
         // Required empty public constructor
@@ -44,7 +47,9 @@ public class DcvSerialFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_discover_list, container, false);
         rvMovies = view.findViewById(R.id.discover_recyclerView);
         progressBar = view.findViewById(R.id.progressBar);
+        searchView = view.findViewById(R.id.search_view);
         showRecyclerList();
+        searchAction();
         return view;
     }
 
@@ -91,5 +96,26 @@ public class DcvSerialFragment extends Fragment {
         } else {
             progressBar.setVisibility(View.GONE);
         }
+    }
+
+    private void searchAction(){
+        searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Toast.makeText(getActivity(), "favorit", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                return false;
+            }
+        });
     }
 }

@@ -29,7 +29,7 @@ public class DisContainerFragment extends Fragment {
         SectionPagerAdapter sectionPagerAdapter = new SectionPagerAdapter(getActivity(), getChildFragmentManager(), "discover");
         ViewPager viewPager = view.findViewById(R.id.discover_view_pager);
         viewPager.setAdapter(sectionPagerAdapter);
-        TabLayout tabs = view.findViewById(R.id.discover_tabs);
+        final TabLayout tabs = view.findViewById(R.id.discover_tabs);
         tabs.setupWithViewPager(viewPager);
         if (((AppCompatActivity) getActivity()).getSupportActionBar() != null) {
             ((AppCompatActivity) getActivity()).getSupportActionBar().setElevation(0);

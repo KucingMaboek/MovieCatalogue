@@ -8,12 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.moviecatalogue.R;
@@ -32,7 +33,7 @@ public class DcvMovieFragment extends Fragment {
     private RecyclerView rvMovies;
     private ArrayList<Item> list = new ArrayList<>();
     private ProgressBar progressBar;
-    private static ItemAdapter listMovieAdapter;
+    private SearchView searchView;
 
 
     public DcvMovieFragment() {
@@ -46,20 +47,52 @@ public class DcvMovieFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_discover_list, container, false);
         rvMovies = view.findViewById(R.id.discover_recyclerView);
         progressBar = view.findViewById(R.id.progressBar);
+        searchView = view.findViewById(R.id.search_view);
         showRecyclerList();
+        searchAction();
         return view;
     }
 
     private void showRecyclerList() {
 //        rvMovies.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvMovies.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        listMovieAdapter = new ItemAdapter(list);
+        final ItemAdapter listMovieAdapter = new ItemAdapter(list);
         listMovieAdapter.notifyDataSetChanged();
         rvMovies.setAdapter(listMovieAdapter);
 
-
         MainViewModel mainViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MainViewModel.class);
         mainViewModel.setMovie();
+        showLoading(true);
+
+        listMovieAdapter.setOnItemClickCallBack(new ItemAdapter.OnItemClickCallBack() {
+            @Override
+            public void onItemClicked(Item data) {
+                showSelectedMovie(data);
+            }
+        });
+        if (getActivity() != null) {
+            mainViewModel.getItem().observe(getActivity(), new Observer<ArrayList<Item>>() {
+                @Override
+                public void onChanged(ArrayList<Item> items) {
+                    if (items != null) {
+                        listMovieAdapter.setData(items);
+                        showLoading(false);
+                    }
+                }
+            });
+        }
+    }
+
+    private void showSearchList(String query) {
+//        rvMovies.setLayoutManager(new LinearLayoutManager(getActivity()));
+        list.clear();
+        rvMovies.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        final ItemAdapter listMovieAdapter = new ItemAdapter(list);
+        listMovieAdapter.notifyDataSetChanged();
+        rvMovies.setAdapter(listMovieAdapter);
+
+        MainViewModel mainViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MainViewModel.class);
+        mainViewModel.searchMovie(query);
         showLoading(true);
 
         listMovieAdapter.setOnItemClickCallBack(new ItemAdapter.OnItemClickCallBack() {
@@ -93,5 +126,27 @@ public class DcvMovieFragment extends Fragment {
         } else {
             progressBar.setVisibility(View.GONE);
         }
+    }
+
+    private void searchAction(){
+        searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                showSearchList(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                showSearchList(newText);
+                return false;
+            }
+        });
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                return false;
+            }
+        });
     }
 }
