@@ -21,4 +21,7 @@
     <string name="title_favorite">Favorite</string>
     <string name="add_to_favorite">Add to Favorite</string>
     <string name="delete_from_favorite">Delete From Favorite</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Search here</string>
+    <string name="moviehub_logo">moviehub logo</string>
 </resources>

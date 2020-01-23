@@ -3,12 +3,12 @@
 
     <item
         android:id="@+id/navigation_discover"
-        android:icon="@drawable/ic_action_compass"
+        android:icon="@drawable/ic_explore"
         android:title="@string/title_discover"/>
 
     <item
         android:id="@+id/navigation_favorite"
         android:icon="@drawable/ic_favorite"
         android:title="@string/title_favorite"/>
-
+    
 </menu>

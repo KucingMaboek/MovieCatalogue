@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -50,7 +51,8 @@ public class DcvMovieFragment extends Fragment {
     }
 
     private void showRecyclerList() {
-        rvMovies.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        rvMovies.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvMovies.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         listMovieAdapter = new ItemAdapter(list);
         listMovieAdapter.notifyDataSetChanged();
         rvMovies.setAdapter(listMovieAdapter);

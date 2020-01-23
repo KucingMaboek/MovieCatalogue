@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
@@ -47,8 +47,8 @@ public class FavSerialFragment extends Fragment {
         AppDatabase db = Room.databaseBuilder(getActivity().getApplicationContext(), AppDatabase.class, "itemdb").allowMainThreadQueries().build();
 
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         ArrayList<Item> list = new ArrayList<>(Arrays.asList(db.itemDAO().selectAllTvShow()));
         ItemAdapter adapter = new ItemAdapter(list);
         adapter.setOnItemClickCallBack(new ItemAdapter.OnItemClickCallBack() {
