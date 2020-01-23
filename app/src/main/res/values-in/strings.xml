@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Movie Catalogue</string>
+    <string name="app_name">Movie Hub</string>
     <string name="title_movies">Judul Film</string>
     <string name="synopsis_movie">Lorem ipsum dolor sit amet</string>
     <string name="object_received">Object diterima</string>
