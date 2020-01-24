@@ -22,10 +22,10 @@
             <ImageView
                 android:id="@+id/img_photo"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:contentDescription="@string/photo"
-                android:scaleType="center"
-                android:src="@drawable/starwars" />
+                android:scaleType="fitCenter"
+                 android:src="@drawable/starwars" />
 
             <TextView
                 android:id="@+id/txt_title"
