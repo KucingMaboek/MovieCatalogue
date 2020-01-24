@@ -8,14 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.moviecatalogue.R;
@@ -35,6 +33,7 @@ public class DcvSerialFragment extends Fragment {
     private ArrayList<Item> list = new ArrayList<>();
     private ProgressBar progressBar;
     private SearchView searchView;
+    private ItemAdapter listMovieAdapter;
 
     public DcvSerialFragment() {
         // Required empty public constructor
@@ -56,7 +55,7 @@ public class DcvSerialFragment extends Fragment {
     private void showRecyclerList() {
 //        rvMovies.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvMovies.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        final ItemAdapter listMovieAdapter = new ItemAdapter(list);
+        listMovieAdapter = new ItemAdapter(list);
         listMovieAdapter.notifyDataSetChanged();
         rvMovies.setAdapter(listMovieAdapter);
 
@@ -84,6 +83,26 @@ public class DcvSerialFragment extends Fragment {
 
     }
 
+    private void showSearchList(String query) {
+        MainViewModel mainViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MainViewModel.class);
+        mainViewModel.searchTvShow(query);
+        showLoading(true);
+        listMovieAdapter.notifyDataSetChanged();
+
+        if (getActivity() != null) {
+            mainViewModel.getItem().observe(getActivity(), new Observer<ArrayList<Item>>() {
+                @Override
+                public void onChanged(ArrayList<Item> items) {
+                    if (items != null) {
+                        listMovieAdapter.setData(items);
+                        showLoading(false);
+                    }
+                }
+            });
+        }
+    }
+
+
     private void showSelectedMovie(Item movie) {
         Intent moveWithObjectActivity = new Intent(getContext(), DetailActivity.class);
         moveWithObjectActivity.putExtra(DetailActivity.EXTRA_MOVIE, (Parcelable) movie);
@@ -98,22 +117,24 @@ public class DcvSerialFragment extends Fragment {
         }
     }
 
-    private void searchAction(){
+    private void searchAction() {
         searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(getActivity(), "favorit", Toast.LENGTH_SHORT).show();
+                showSearchList(query);
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                showSearchList(newText);
                 return false;
             }
         });
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
+                showRecyclerList();
                 return false;
             }
         });

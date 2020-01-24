@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
@@ -34,6 +33,7 @@ public class DcvMovieFragment extends Fragment {
     private ArrayList<Item> list = new ArrayList<>();
     private ProgressBar progressBar;
     private SearchView searchView;
+    private ItemAdapter listMovieAdapter;
 
 
     public DcvMovieFragment() {
@@ -56,7 +56,7 @@ public class DcvMovieFragment extends Fragment {
     private void showRecyclerList() {
 //        rvMovies.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvMovies.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        final ItemAdapter listMovieAdapter = new ItemAdapter(list);
+        listMovieAdapter = new ItemAdapter(list);
         listMovieAdapter.notifyDataSetChanged();
         rvMovies.setAdapter(listMovieAdapter);
 
@@ -84,23 +84,11 @@ public class DcvMovieFragment extends Fragment {
     }
 
     private void showSearchList(String query) {
-//        rvMovies.setLayoutManager(new LinearLayoutManager(getActivity()));
-        list.clear();
-        rvMovies.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        final ItemAdapter listMovieAdapter = new ItemAdapter(list);
-        listMovieAdapter.notifyDataSetChanged();
-        rvMovies.setAdapter(listMovieAdapter);
-
         MainViewModel mainViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MainViewModel.class);
         mainViewModel.searchMovie(query);
         showLoading(true);
+        listMovieAdapter.notifyDataSetChanged();
 
-        listMovieAdapter.setOnItemClickCallBack(new ItemAdapter.OnItemClickCallBack() {
-            @Override
-            public void onItemClicked(Item data) {
-                showSelectedMovie(data);
-            }
-        });
         if (getActivity() != null) {
             mainViewModel.getItem().observe(getActivity(), new Observer<ArrayList<Item>>() {
                 @Override
@@ -128,7 +116,7 @@ public class DcvMovieFragment extends Fragment {
         }
     }
 
-    private void searchAction(){
+    private void searchAction() {
         searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -145,6 +133,7 @@ public class DcvMovieFragment extends Fragment {
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
+                showRecyclerList();
                 return false;
             }
         });

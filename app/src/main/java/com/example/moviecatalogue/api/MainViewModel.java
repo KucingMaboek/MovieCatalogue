@@ -116,12 +116,12 @@ public class MainViewModel extends ViewModel {
     public void searchMovie(String query) {
         AsyncHttpClient client = new AsyncHttpClient();
         final ArrayList<Item> listMovie = new ArrayList<>();
-        String url = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY + "&language=en-US" + query;
+        String url = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY + "&language=en-US" + "&query=" + query;
 
         if (currentLanguange.equalsIgnoreCase("INDONESIA")) {
-            url = url = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY + "&language=id-ID" + query;
+            url = url = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY + "&language=id-ID" + "&query=" + query;
         } else if (currentLanguange.equalsIgnoreCase("ENGLISH")) {
-            url = url = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY + "&language=en-US" + query;
+            url = url = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY + "&language=en-US" + "&query=" + query;
 
         }
 
@@ -161,12 +161,12 @@ public class MainViewModel extends ViewModel {
     public void searchTvShow(String query) {
         AsyncHttpClient client = new AsyncHttpClient();
         final ArrayList<Item> listTvShow = new ArrayList<>();
-        String url = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY + "&language=en-US" + query;
+        String url = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY + "&language=en-US" + "&query=" + query;
 
         if (currentLanguange.equalsIgnoreCase("INDONESIA")) {
-            url = url = url = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY + "&language=id-ID" + query;
+            url = url = url = "https://api.themoviedb.org/3/search/tv?api_key=" + API_KEY + "&language=id-ID" + "&query=" + query;
         } else if (currentLanguange.equalsIgnoreCase("ENGLISH")) {
-            url = url = url = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY + "&language=en-US" + query;
+            url = url = url = "https://api.themoviedb.org/3/search/tv?api_key=" + API_KEY + "&language=en-US" + "&query=" + query;
 
         }
 
