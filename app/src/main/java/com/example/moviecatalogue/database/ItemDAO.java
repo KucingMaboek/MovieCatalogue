@@ -1,6 +1,8 @@
 package com.example.moviecatalogue.database;
 
 
+import android.database.Cursor;
+
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -26,8 +28,15 @@ public interface ItemDAO {
     @Query("SELECT * FROM tItem WHERE category = 'movie'")
     Item[] selectAllMovie();
 
+    @Query("SELECT * FROM tItem WHERE category = 'movie'")
+    Cursor selectMovieProvider();
+
     @Query("SELECT * FROM tItem WHERE category = 'tvshow'")
     Item[] selectAllTvShow();
+
+    @Query("SELECT * FROM tItem WHERE category = 'tvshow'")
+    Cursor selectTvShowProvider();
+
 
     @Query("SELECT * FROM tItem WHERE title = :nama")
     List<Item> favoriteChecker(String nama);
