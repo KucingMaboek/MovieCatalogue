@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.moviecatalogue">
+    package="com.example.favoritehub">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <permission
+    <uses-permission
         android:name="com.example.moviecatalogue.READ_DATABASE"
         android:protectionLevel="normal" />
-    <permission
+    <uses-permission
         android:name="com.example.moviecatalogue.WRITE_DATABASE"
         android:protectionLevel="normal" />
 
@@ -19,15 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <provider
-            android:name=".provider.ItemProvider"
-            android:authorities="com.example.moviecatalogue"
-            android:enabled="true"
-            android:exported="true"
-            android:readPermission="com.example.moviecatalogue.READ_DATABASE"
-            android:writePermission="com.example.moviecatalogue.WRITE_DATABASE"/>
-
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".view.activity.DetailActivity" />
         <activity android:name=".view.activity.MainActivity">
             <intent-filter>

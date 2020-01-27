@@ -1,5 +1,6 @@
-package com.example.moviecatalogue.adapter;
+package com.example.favoritehub.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,19 +11,22 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.moviecatalogue.R;
-import com.example.moviecatalogue.model.Item;
+import com.example.favoritehub.R;
+import com.example.favoritehub.model.Item;
 
 import java.util.ArrayList;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> {
     private ArrayList<Item> listItem;
     private OnItemClickCallBack onItemClickCallBack;
+    private Context context;
 
     public void setData(ArrayList<Item> items) {
-        listItem.clear();
-        listItem.addAll(items);
-        notifyDataSetChanged();
+        if (listItem != null) {
+            listItem.clear();
+            listItem.addAll(items);
+            notifyDataSetChanged();
+        }
     }
 
     public void setOnItemClickCallBack(OnItemClickCallBack onItemClickCallBack) {
@@ -33,6 +37,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> {
         this.listItem = list;
     }
 
+    public ItemAdapter(Context context) {
+        this.context = context;
+    }
 
     @NonNull
     @Override
@@ -62,7 +69,12 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> {
 
     @Override
     public int getItemCount() {
-        return listItem.size();
+        if (listItem != null) {
+            return listItem.size();
+        }
+        else {
+            return 0;
+        }
     }
 
     class ItemHolder extends RecyclerView.ViewHolder {

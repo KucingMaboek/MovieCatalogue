@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1E1E1E</color>
+    <color name="colorPrimaryDark">#141414</color>
+    <color name="colorAccent">#FD9E10</color>
+    <color name="inActiveNavButton">#C97A00</color>
+    <color name="activeNavButton">#FD9E10</color>
+    <color name="textColor">#FFFFFF</color>
+</resources>

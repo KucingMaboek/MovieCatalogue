@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Movie Hub</string>
+    <string name="title_movies">Judul Film</string>
+    <string name="synopsis_movie">Lorem ipsum dolor sit amet</string>
+    <string name="object_received">Object diterima</string>
+    <string name="tv_object_judul">Judul</string>
+    <string name="object_synopsis">lorem ipsum dolor sit amet</string>
+    <string name="object_photo">object_photo</string>
+    <string name="photo">photo</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="tab_text_1">Film</string>
+    <string name="tab_text_2">Drama</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="judul">Judul</string>
+    <string name="synopsis">Sinopsis</string>
+    <string name="change_languange_setting">Ubah Bahasa</string>
+    <string name="title_discover">Temukan</string>
+    <string name="title_favorite">Favorit</string>
+    <string name="title_setting">Pengaturan</string>
+    <string name="add_to_favorite">Tambah ke Favorit</string>
+    <string name="delete_from_favorite">Hapus dari Favorit</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Cari disini</string>
+</resources>
