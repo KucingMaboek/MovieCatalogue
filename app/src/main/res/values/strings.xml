@@ -25,4 +25,6 @@
     <string name="search">Search</string>
     <string name="search_hint">Search here</string>
     <string name="moviehub_logo">moviehub logo</string>
+    <string name="appwidget_text">Favorite</string>
+    <string name="empty_text">NO DATA</string>
 </resources>
