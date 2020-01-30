@@ -29,7 +29,7 @@ public class Item implements Parcelable, Serializable {
     @ColumnInfo(name = "category")
     private String category;
 
-    private Item(Parcel in) {
+    Item(Parcel in) {
         id = in.readString();
         photo = in.readString();
         title = in.readString();

@@ -27,4 +27,13 @@
     <string name="moviehub_logo">moviehub logo</string>
     <string name="appwidget_text">Favorit</string>
     <string name="empty_text">NO DATA</string>
+    <string name="languange_setting">Pengaturan bahasa</string>
+    <string name="button_languange_setting">atur</string>
+    <string name="daily_reminder_notification">Notifikasi Pengingat Harian</string>
+    <string name="daily_news_notification">Notifikasi Terbaru Harian</string>
+    <string name="daily">Daily Reminder Notification</string>
+    <string name="release">Daily Release Notification</string>
+    <string name="reminder_message">Pagi, siap untuk makan popcorn hari ini?</string>
+    <string name="news_message">telah dirilis</string>
+
 </resources>

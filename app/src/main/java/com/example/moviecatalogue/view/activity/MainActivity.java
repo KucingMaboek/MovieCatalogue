@@ -1,8 +1,6 @@
 package com.example.moviecatalogue.view.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -10,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.moviecatalogue.R;
+import com.example.moviecatalogue.view.fragment.SettingFragment;
 import com.example.moviecatalogue.view.fragment.DisContainerFragment;
 import com.example.moviecatalogue.view.fragment.FavContainerFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -49,8 +48,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 fragment = new FavContainerFragment();
                 break;
             case R.id.action_change_settings:
-                Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
-                startActivity(mIntent);
+                fragment = new SettingFragment();
+//                Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+//                startActivity(mIntent);
                 break;
         }
         return loadFragment(fragment);

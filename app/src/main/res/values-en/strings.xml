@@ -27,4 +27,13 @@
     <string name="moviehub_logo">moviehub logo</string>
     <string name="appwidget_text">Favorite</string>
     <string name="empty_text">NO DATA</string>
+    <string name="languange_setting">Languange Setting</string>
+    <string name="button_languange_setting">set</string>
+    <string name="daily_reminder_notification">Daily Reminder Notification</string>
+    <string name="daily_news_notification">Daily News Notification</string>
+    <string name="daily">Daily Reminder Notification</string>
+    <string name="release">Daily Release Notification</string>
+    <string name="reminder_message">Morning, ready for eat some popcorn today?</string>
+    <string name="news_message">has been released</string>
+
 </resources>
