@@ -41,6 +41,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     public static final String EXTRA_TYPE = "type";
     public static final int ID_REMINDER = 100;
     public static final int ID_NEWS = 101;
+    private ArrayList<Item> listItem;
 
     public AlarmReceiver() {
     }
@@ -53,7 +54,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             @SuppressLint("SimpleDateFormat") SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             String today = df.format(c);
             AsyncHttpClient client = new AsyncHttpClient();
-            final ArrayList<Item> listItem = new ArrayList<>();
+            listItem = new ArrayList<>();
             String url = "https://api.themoviedb.org/3/discover/movie?api_key=" + BuildConfig.TMDB_API_KEY + "&primary_release_date.gte=" + today + "&primary_release_date.lte=" + today;
             client.get(url, new JsonHttpResponseHandler() {
                 @SuppressLint("ResourceType")
@@ -67,17 +68,14 @@ public class AlarmReceiver extends BroadcastReceiver {
                             Item item = new Item();
 
                             item.setId(movie.getString("id"));
-                            item.setPhoto("https://image.tmdb.org/t/p/w300" + movie.getString("poster_path"));
+                            item.setPhoto("htpps://image.tmdb.org/t/p/w300" + movie.getString("poster_path"));
                             item.setTitle(movie.getString("title"));
                             item.setSysnopsis(movie.getString("overview"));
                             item.setCategory("movie");
 
                             listItem.add(item);
-                            showAlarmNotification(context, context.getResources().getString(R.string.news_message), listItem.get(i).getTitle()+context.getResources().getString(R.string.release), alarm, item);
+                            showAlarmNotification(context, context.getResources().getString(R.string.release), null, alarm, item);
                         }
-//                        if (list.length() == 0) {
-//                            showAlarmNotification(context, context.getResources().getString(R.string.release__reminder_title), context.getResources().getString(R.string.release__reminder_bad_message), alarm, null);
-//                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -128,18 +126,36 @@ public class AlarmReceiver extends BroadcastReceiver {
         return PendingIntent.getActivity(context, notificationId, intent, 0);
     }
 
-    private void showAlarmNotification(Context context, String title, String message, int notifId, @Nullable Item item) {
+    private void showAlarmNotification(Context context, String title, @Nullable String message, int notifId, @Nullable Item item) {
         String CHANNEL_ID = "Channel_1";
         String CHANNEL_NAME = "AlarmManager chanel";
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_today)
-                .setContentTitle(title)
-                .setContentText(message)
-                .setColor(ContextCompat.getColor(context, android.R.color.transparent))
-                .setVibrate(new long[]{1000, 1000, 1000, 1000})
-                .setSound(alarmSound);
+        NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+        if (listItem.size() != 0) {
+            for (int i = 0; i < listItem.size(); i++) {
+                inboxStyle.addLine(listItem.get(i).getTitle());
+            }
+        }
+        NotificationCompat.Builder builder;
+        if (message == null) {
+            builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+                    .setSmallIcon(R.drawable.ic_today)
+                    .setContentTitle(title)
+                    .setStyle(inboxStyle)
+                    .setColor(ContextCompat.getColor(context, android.R.color.transparent))
+                    .setVibrate(new long[]{1000, 1000, 1000, 1000})
+                    .setSound(alarmSound);
+        } else {
+            builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+                    .setSmallIcon(R.drawable.ic_today)
+                    .setContentTitle(title)
+                    .setContentText(message)
+                    .setColor(ContextCompat.getColor(context, android.R.color.transparent))
+                    .setVibrate(new long[]{1000, 1000, 1000, 1000})
+                    .setSound(alarmSound);
+
+        }
 
         PendingIntent pendingIntent = getPendingIntent(context, notifId, item);
         if (pendingIntent != null) {

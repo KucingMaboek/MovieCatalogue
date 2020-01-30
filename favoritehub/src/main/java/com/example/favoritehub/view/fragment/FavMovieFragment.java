@@ -84,11 +84,6 @@ public class FavMovieFragment extends Fragment implements LoadCallback {
     public void postExecute(Cursor cursor){
         list = mapCursorToArrayList(cursor);
         showRecyclerList();
-        if (list.size() < 1) {
-            System.out.println("no data");
-        } else {
-            System.out.println(list.size());
-        }
     }
 
     static class DataObserver extends ContentObserver{
@@ -118,11 +113,6 @@ public class FavMovieFragment extends Fragment implements LoadCallback {
         @Override
         protected Cursor doInBackground(Void... voids) {
             Cursor cursor = weakContext.get().getContentResolver().query(CONTENT_URI_MOVIE, null, null, null, null);
-            if (cursor == null) {
-                System.out.println("no cursor found");
-            } else {
-                System.out.println("cursor found");
-            }
             return cursor;
         }
 

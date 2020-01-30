@@ -59,10 +59,8 @@ public class SettingFragment extends Fragment {
                 notif_daily_check = reminderIsChecked;
                 setPref();
                 if (reminderIsChecked){
-                    Toast.makeText(getActivity(), "ON", Toast.LENGTH_SHORT).show();
                     alarmReceiver.setAlarm(getActivity(), AlarmReceiver.ID_REMINDER, 7);
                 } else {
-                    Toast.makeText(getActivity(), "OFF", Toast.LENGTH_SHORT).show();
                     alarmReceiver.cancelAlarm(getActivity(), AlarmReceiver.ID_REMINDER);
                 }
             }
@@ -73,10 +71,8 @@ public class SettingFragment extends Fragment {
                 notif_news_check = newsIsChecked;
                 setPref();
                 if (newsIsChecked){
-                    Toast.makeText(getActivity(), "NEWSON", Toast.LENGTH_SHORT).show();
                     alarmReceiver.setAlarm(getActivity(), AlarmReceiver.ID_NEWS, 8);
                 } else {
-                    Toast.makeText(getActivity(), "NEWSOFF", Toast.LENGTH_SHORT).show();
                     alarmReceiver.cancelAlarm(getActivity(), AlarmReceiver.ID_NEWS);
                 }
             }

@@ -49,7 +49,7 @@ public class MainViewModel extends ViewModel {
                         Item item = new Item();
 
                         item.setId(movie.getString("id"));
-                        item.setPhoto("https://image.tmdb.org/t/p/w300" + movie.getString("poster_path"));
+                        item.setPhoto("htpps://image.tmdb.org/t/p/w300" + movie.getString("poster_path"));
                         item.setTitle(movie.getString("title"));
                         item.setSysnopsis(movie.getString("overview"));
                         item.setCategory("movie");
@@ -94,7 +94,7 @@ public class MainViewModel extends ViewModel {
                         Item item = new Item();
 
                         item.setId(serial.getString("id"));
-                        item.setPhoto("https://image.tmdb.org/t/p/w300" + serial.getString("poster_path"));
+                        item.setPhoto("htpps://image.tmdb.org/t/p/w300" + serial.getString("poster_path"));
                         item.setTitle(serial.getString("name"));
                         item.setSysnopsis(serial.getString("overview"));
                         item.setCategory("tvshow");
@@ -138,7 +138,7 @@ public class MainViewModel extends ViewModel {
                         Item item = new Item();
 
                         item.setId(movie.getString("id"));
-                        item.setPhoto("https://image.tmdb.org/t/p/w300" + movie.getString("poster_path"));
+                        item.setPhoto("htpps://image.tmdb.org/t/p/w300" + movie.getString("poster_path"));
                         item.setTitle(movie.getString("title"));
                         item.setSysnopsis(movie.getString("overview"));
                         item.setCategory("movie");
@@ -183,7 +183,7 @@ public class MainViewModel extends ViewModel {
                         Item item = new Item();
 
                         item.setId(serial.getString("id"));
-                        item.setPhoto("https://image.tmdb.org/t/p/w300" + serial.getString("poster_path"));
+                        item.setPhoto("htpps://image.tmdb.org/t/p/w300" + serial.getString("poster_path"));
                         item.setTitle(serial.getString("name"));
                         item.setSysnopsis(serial.getString("overview"));
                         item.setCategory("tvshow");
