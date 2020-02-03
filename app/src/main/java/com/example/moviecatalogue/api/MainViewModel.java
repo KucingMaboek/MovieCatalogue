@@ -49,7 +49,7 @@ public class MainViewModel extends ViewModel {
                         Item item = new Item();
 
                         item.setId(movie.getString("id"));
-                        item.setPhoto("htpps://image.tmdb.org/t/p/w300" + movie.getString("poster_path"));
+                        item.setPhoto("https://image.tmdb.org/t/p/w342" + movie.getString("poster_path"));
                         item.setTitle(movie.getString("title"));
                         item.setSysnopsis(movie.getString("overview"));
                         item.setCategory("movie");
@@ -94,7 +94,7 @@ public class MainViewModel extends ViewModel {
                         Item item = new Item();
 
                         item.setId(serial.getString("id"));
-                        item.setPhoto("htpps://image.tmdb.org/t/p/w300" + serial.getString("poster_path"));
+                        item.setPhoto("https://image.tmdb.org/t/p/w342" + serial.getString("poster_path"));
                         item.setTitle(serial.getString("name"));
                         item.setSysnopsis(serial.getString("overview"));
                         item.setCategory("tvshow");
@@ -119,9 +119,9 @@ public class MainViewModel extends ViewModel {
         String url = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY + "&language=en-US" + "&query=" + query;
 
         if (currentLanguange.equalsIgnoreCase("INDONESIA")) {
-            url = url = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY + "&language=id-ID" + "&query=" + query;
+            url = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY + "&language=id-ID" + "&query=" + query;
         } else if (currentLanguange.equalsIgnoreCase("ENGLISH")) {
-            url = url = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY + "&language=en-US" + "&query=" + query;
+            url = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY + "&language=en-US" + "&query=" + query;
 
         }
 
@@ -136,9 +136,8 @@ public class MainViewModel extends ViewModel {
                     for (int i = 0; i < list.length(); i++) {
                         JSONObject movie = list.getJSONObject(i);
                         Item item = new Item();
-
                         item.setId(movie.getString("id"));
-                        item.setPhoto("htpps://image.tmdb.org/t/p/w300" + movie.getString("poster_path"));
+                        item.setPhoto("https://image.tmdb.org/t/p/w342" + movie.getString("poster_path"));
                         item.setTitle(movie.getString("title"));
                         item.setSysnopsis(movie.getString("overview"));
                         item.setCategory("movie");
@@ -164,9 +163,9 @@ public class MainViewModel extends ViewModel {
         String url = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY + "&language=en-US" + "&query=" + query;
 
         if (currentLanguange.equalsIgnoreCase("INDONESIA")) {
-            url = url = url = "https://api.themoviedb.org/3/search/tv?api_key=" + API_KEY + "&language=id-ID" + "&query=" + query;
+            url = "https://api.themoviedb.org/3/search/tv?api_key=" + API_KEY + "&language=id-ID" + "&query=" + query;
         } else if (currentLanguange.equalsIgnoreCase("ENGLISH")) {
-            url = url = url = "https://api.themoviedb.org/3/search/tv?api_key=" + API_KEY + "&language=en-US" + "&query=" + query;
+            url = "https://api.themoviedb.org/3/search/tv?api_key=" + API_KEY + "&language=en-US" + "&query=" + query;
 
         }
 
@@ -183,7 +182,7 @@ public class MainViewModel extends ViewModel {
                         Item item = new Item();
 
                         item.setId(serial.getString("id"));
-                        item.setPhoto("htpps://image.tmdb.org/t/p/w300" + serial.getString("poster_path"));
+                        item.setPhoto("https://image.tmdb.org/t/p/w342" + serial.getString("poster_path"));
                         item.setTitle(serial.getString("name"));
                         item.setSysnopsis(serial.getString("overview"));
                         item.setCategory("tvshow");

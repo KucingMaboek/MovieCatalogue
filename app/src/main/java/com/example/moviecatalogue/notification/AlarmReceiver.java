@@ -68,7 +68,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                             Item item = new Item();
 
                             item.setId(movie.getString("id"));
-                            item.setPhoto("htpps://image.tmdb.org/t/p/w300" + movie.getString("poster_path"));
+                            item.setPhoto("https://image.tmdb.org/t/p/w342" + movie.getString("poster_path"));
                             item.setTitle(movie.getString("title"));
                             item.setSysnopsis(movie.getString("overview"));
                             item.setCategory("movie");
